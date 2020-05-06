@@ -1,0 +1,26 @@
+<template name="clock">
+  <view wx:if="{{!clocktype}}" data-clocktype="{{clocktype}}" bind:tap="handleClock">
+    <button>打卡</button>
+    <!-- <text>{{currentTime}}</text> -->
+  </view>
+  <block wx:else>
+    <button bind:tap="handleRevoke">撤销</button>
+    <view> {{clockTime}} {{actionType}} </view>
+    <view>比平时{{earlyOrLate > 0 ? '早' : '晚'}}了{{distanceTime}}</view>
+  </block>
+</template>
+
+<view>
+  <view>起床打卡</view>
+  <template is="clock" data="{{...getupData}}"></template>
+
+  <!-- <view>
+    <text>前两天的起床时间：</text>
+    <text wx:for="{{getupList}}" wx:key="idx" wx:for-index="idx" wx:for-item="time">{{time}}</text>
+  </view> -->
+</view>
+
+<view>
+  <view>睡觉打卡</view>
+  <template is="clock" data="{{...sleepData}}"></template>
+</view>
